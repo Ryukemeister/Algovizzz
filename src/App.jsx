@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import MergeSort from "./components/MergeSort";
 
 // 'Bubble sort', 'selection sort', 'insertion sort', 'quick sort', 'merge sort', 'heap sort'
 //  "Bubble sort", "heap sort", "insertion sort", "merge sort", "quick sort", "selection sort"
@@ -19,6 +20,13 @@ function App() {
     setNumbersArray(array);
   }
 
+  function getMergeSortedArray() {
+    const num = MergeSort(numbersArray);
+    console.log(num);
+  }
+
+  // console.log(numbersArray.sort((a, b) => b - a));
+
   const newArray = numbersArray.map((num, i) => {
     return (
       <div
@@ -31,7 +39,7 @@ function App() {
     );
   });
 
-  // console.log(numbersArray);
+  console.log(numbersArray);
 
   useEffect(() => {
     getRandomArray();
@@ -41,9 +49,15 @@ function App() {
     <div className="App">
       <button
         onClick={getRandomArray}
-        className="py-2 px-4 font-montserrat my-5 mx-5 bg-orange-400 text-white font-semibold rounded-full shadow-md hover:bg-orange-500"
+        className="py-2 px-4 font-montserrat my-5 mx-4 bg-orange-500 text-white font-semibold rounded-full shadow-md hover:bg-orange-600"
       >
         Generate new array
+      </button>
+      <button
+        onClick={getMergeSortedArray}
+        className="py-2 px-4 font-montserrat my-5 mx-4 bg-yellow-500 text-white font-semibold rounded-full shadow-md hover:bg-yellow-600"
+      >
+        Merge sort
       </button>
       <section className="flex gap-[2px] mb-5 justify-center mx-5 rotate-180">
         {newArray}
