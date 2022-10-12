@@ -17,15 +17,10 @@ function App() {
     for (let i = 0; i < 100; i++) {
       array.push(getRandomNumber(1, 500));
     }
+
+    console.log(array);
     setNumbersArray(array);
   }
-
-  function getMergeSortedArray() {
-    const num = MergeSort(numbersArray);
-    console.log(num);
-  }
-
-  // console.log(numbersArray.sort((a, b) => b - a));
 
   const newArray = numbersArray.map((num, i) => {
     return (
@@ -38,8 +33,6 @@ function App() {
       ></div>
     );
   });
-
-  console.log(numbersArray);
 
   useEffect(() => {
     getRandomArray();
@@ -54,7 +47,7 @@ function App() {
         Generate new array
       </button>
       <button
-        onClick={getMergeSortedArray}
+        onClick={() => MergeSort(numbersArray)}
         className="py-2 px-4 font-montserrat my-5 mx-4 bg-yellow-500 text-white font-semibold rounded-full shadow-md hover:bg-yellow-600"
       >
         Merge sort
