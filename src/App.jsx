@@ -19,7 +19,7 @@ function App() {
       array.push(getRandomNumber(1, 500));
     }
 
-    console.log(array);
+    //  console.log(array);
     setNumbersArray(array);
   }
 
@@ -58,7 +58,7 @@ function App() {
   const newArray = numbersArray.map((num, i) => {
     return (
       <div
-        className="bar bg-red-500 w-5 lg:w-10"
+        className="bar bg-red-500 w-10 lg:w-12 "
         key={i}
         style={{
           height: `${num}px`,
@@ -72,8 +72,8 @@ function App() {
   }, []);
 
   return (
-    <div className="App flex flex-col gap-y-7 h-[100vh]">
-      <div className="flex justify-between py-4  bg-gradient-to-r from-red-500 via-red-400 to-red-300 shadow-md">
+    <div className="App flex flex-col gap-y-10 lg:gap-y-7 h-[100vh]">
+      <div className="flex justify-between py-4 bg-gradient-to-r from-red-500 via-red-400 to-red-300 shadow-md">
         <div>
           <h1 className="font-poppins pl-5 font-medium text-white tracking-wide text-2xl">
             Algovizzz
