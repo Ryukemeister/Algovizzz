@@ -15,7 +15,7 @@ function App() {
   function getRandomArray() {
     let array = [];
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 30; i++) {
       array.push(getRandomNumber(1, 500));
     }
 
@@ -32,49 +32,27 @@ function App() {
   }
 
   function sortttt() {
-    const newArrayy = numbersArray.slice();
+    const newArrayy = [...numbersArray];
     const swaps = BubbleSort(newArrayy);
-    const first = swaps.shift();
 
-    // console.log(newArrayy, swaps, first);
-
-    animate(swaps, newArray);
-    // setNumbersArray(newArrayy);
+    animate(swaps);
   }
 
   function animate(swaps) {
-    let newArrayy = numbersArray.slice();
-
     if (swaps.length === 0) {
       return;
     }
 
     const [i, j] = swaps.shift();
-    [newArrayy[i], newArrayy[j]] = [newArrayy[j], newArrayy[i]];
 
-    // console.log(newArray);
-    setNumbersArray(newArrayy);
+    [numbersArray[i], numbersArray[j]] = [numbersArray[j], numbersArray[i]];
 
-    setTimeout(function () {
-      animate(swaps, newArrayy);
-      console.log("Changing");
-    }, 100);
+    setNumbersArray([...numbersArray]);
+    // console.log(numbersArray);
 
-    // console.log(swaps, newArrayy);
-
-    /*
-    const [i, j] = swaps.shift();
-    [newArrayy[i], newArrayy[j]] = [newArrayy[j], newArrayy[i]];
-    console.log(i, j);
-    console.log(newArrayy[i], newArrayy[j]);
-    console.log(tempArr);
-    setNumbersArray(tempArr);
-
-
-    setTimeout(function () {
-      animate(swaps, newArrayy);
-    }, 50);
-    */
+    setTimeout(() => {
+      animate(swaps);
+    }, 40);
   }
 
   const newArray = numbersArray.map((num, i) => {
@@ -90,16 +68,12 @@ function App() {
   });
 
   useEffect(() => {
-    sortttt();
-  }, []);
-
-  useEffect(() => {
     getRandomArray();
   }, []);
 
   return (
-    <div className="App">
-      <div className="flex justify-between py-4 mb-5 bg-gradient-to-r from-red-500 via-red-400 to-red-300 shadow-md">
+    <div className="App flex flex-col justify-between h-[100vh]">
+      <div className="flex justify-between py-4  bg-gradient-to-r from-red-500 via-red-400 to-red-300 shadow-md">
         <div>
           <h1 className="font-poppins pl-5 font-medium text-white tracking-wide text-2xl">
             Algovizzz
@@ -108,19 +82,19 @@ function App() {
         <div>
           <button
             onClick={getRandomArray}
-            className="py-[7px] px-4 font-montserrat mx-4 bg-pink-500 text-white font-semibold rounded-full shadow-sm hover:bg-pink-600"
+            className="py-[7px] px-4 outline-none font-montserrat mx-4 bg-pink-500 text-white font-semibold rounded-full shadow-sm hover:bg-pink-600"
           >
             Generate new array
           </button>
           <button
             onClick={getSortedArray}
-            className="py-[6px] px-4 font-montserrat mx-4 bg-yellow-500 text-white font-semibold rounded-full shadow-sm hover:bg-yellow-600"
+            className="py-[6px] px-4 outline-none font-montserrat mx-4 bg-yellow-500 text-white font-semibold rounded-full shadow-sm hover:bg-yellow-600"
           >
             Merge sort
           </button>
           <button
             onClick={sortttt}
-            className="py-[6px] px-4 font-montserrat mx-4 bg-blue-500 text-white font-semibold rounded-full shadow-sm hover:bg-blue-600"
+            className="py-[6px] px-4 outline-none font-montserrat mx-4 bg-blue-500 text-white font-semibold rounded-full shadow-sm hover:bg-blue-600"
           >
             Bubble sort
           </button>
