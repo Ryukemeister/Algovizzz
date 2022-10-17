@@ -15,7 +15,7 @@ function App() {
   function getRandomArray() {
     let array = [];
 
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 25; i++) {
       array.push(getRandomNumber(1, 500));
     }
 
@@ -52,13 +52,13 @@ function App() {
 
     setTimeout(() => {
       animate(swaps);
-    }, 40);
+    }, 75);
   }
 
   const newArray = numbersArray.map((num, i) => {
     return (
       <div
-        className="bar bg-red-500 w-5"
+        className="bar bg-red-500 w-5 lg:w-10"
         key={i}
         style={{
           height: `${num}px`,
@@ -72,7 +72,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App flex flex-col justify-between h-[100vh]">
+    <div className="App flex flex-col gap-y-7 h-[100vh]">
       <div className="flex justify-between py-4  bg-gradient-to-r from-red-500 via-red-400 to-red-300 shadow-md">
         <div>
           <h1 className="font-poppins pl-5 font-medium text-white tracking-wide text-2xl">
