@@ -7,6 +7,7 @@ import MergeSort from "./SortingAlgorithms/MergeSort";
 
 function App() {
   const [numbersArray, setNumbersArray] = useState([]);
+  const [indices, setIndices] = useState([]);
 
   function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1) * min);
@@ -15,7 +16,7 @@ function App() {
   function getRandomArray() {
     let array = [];
 
-    for (let i = 0; i < 25; i++) {
+    for (let i = 0; i < 10; i++) {
       array.push(getRandomNumber(1, 500));
     }
 
@@ -40,6 +41,8 @@ function App() {
 
   function animate(swaps) {
     if (swaps.length === 0) {
+      // console.log(numbersArray);
+      setIndices([]);
       return;
     }
 
@@ -48,20 +51,24 @@ function App() {
     [numbersArray[i], numbersArray[j]] = [numbersArray[j], numbersArray[i]];
 
     setNumbersArray([...numbersArray]);
+    setIndices([i, j]);
     // console.log(numbersArray);
 
     setTimeout(() => {
       animate(swaps);
-    }, 75);
+    }, 500);
   }
 
-  const newArray = numbersArray.map((num, i) => {
+  const newArray = numbersArray.map((el, i) => {
     return (
       <div
-        className="bar bg-red-500 w-10 lg:w-12 "
+        className="bar w-10 lg:w-24"
         key={i}
         style={{
-          height: `${num}px`,
+          height: `${el}px`,
+          backgroundColor: `${
+            indices && indices.includes(i) ? "rgb(34 197 94)" : "rgb(239 68 68)"
+          }`,
         }}
       ></div>
     );
