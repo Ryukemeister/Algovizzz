@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import BubbleSort from "./SortingAlgorithms/BubbleSort";
+import InsertionSort from "./SortingAlgorithms/InsertionSort";
 import MergeSort from "./SortingAlgorithms/MergeSort";
 
 // 'Bubble sort', 'selection sort', 'insertion sort', 'quick sort', 'merge sort', 'heap sort'
@@ -24,17 +25,27 @@ function App() {
     setNumbersArray(array);
   }
 
-  function getSortedArray() {
+  function getMergeSort() {
     let newArrayy = numbersArray.slice();
 
     const arr = MergeSort(newArrayy);
-    //  setNumbersArray(arr);
+    // setNumbersArray(arr);
     console.log(arr);
   }
 
-  function sortttt() {
+  function getBubbleSort() {
     const newArrayy = [...numbersArray];
     const swaps = BubbleSort(newArrayy);
+
+    animate(swaps);
+  }
+
+  function getInsertionSort() {
+    const newArrayyyyy = numbersArray.slice();
+    const swaps = InsertionSort(newArrayyyyy);
+
+    // console.log(newArrayyyyy);
+    // console.log(swaps);
 
     animate(swaps);
   }
@@ -80,34 +91,39 @@ function App() {
 
   return (
     <div className="App flex flex-col gap-y-10 lg:gap-y-7 h-[100vh]">
-      <div className="flex justify-between py-4 bg-gradient-to-r from-red-500 via-red-400 to-red-300 shadow-md">
+      <div className="flex flex-col lg:flex-row lg:justify-between py-4 bg-gradient-to-r from-red-500 via-red-400 to-red-300 shadow-md">
         <div>
-          <h1 className="font-poppins pl-5 font-medium text-white tracking-wide text-2xl">
+          <h1 className="font-poppins mb-2 lg:mb-0 pl-5 font-medium text-white tracking-wide text-2xl">
             Algovizzz
           </h1>
         </div>
-        <div>
+        <div className="lg:flex lg:gap-x-4 lg:mr-4 mx-4">
           <button
             onClick={getRandomArray}
-            className="py-[7px] px-4 outline-none font-montserrat mx-4 bg-pink-500 text-white font-semibold rounded-full shadow-sm hover:bg-pink-600"
+            className="py-[7px] px-4 mr-4 mb-2 lg:mb-0 lg:mr-0 outline-none font-montserrat bg-pink-500 text-white font-semibold rounded-full shadow-sm hover:bg-pink-600"
           >
             Generate new array
           </button>
           <button
-            onClick={getSortedArray}
-            className="py-[6px] px-4 outline-none font-montserrat mx-4 bg-yellow-500 text-white font-semibold rounded-full shadow-sm hover:bg-yellow-600"
+            onClick={getMergeSort}
+            className="py-[6px] px-4 outline-none font-montserrat bg-yellow-500 text-white font-semibold rounded-full shadow-sm hover:bg-yellow-600"
           >
             Merge sort
           </button>
           <button
-            onClick={sortttt}
-            className="py-[6px] px-4 outline-none font-montserrat mx-4 bg-blue-500 text-white font-semibold rounded-full shadow-sm hover:bg-blue-600"
+            onClick={getBubbleSort}
+            className="py-[6px] px-4 mr-4 lg:mr-0 outline-none font-montserrat bg-blue-500 text-white font-semibold rounded-full shadow-sm hover:bg-blue-600"
           >
             Bubble sort
           </button>
+          <button
+            onClick={getInsertionSort}
+            className="py-[6px] px-4 outline-none font-montserrat bg-violet-500 text-white font-semibold rounded-full shadow-sm hover:bg-violet-600"
+          >
+            Insertion sort
+          </button>
         </div>
       </div>
-
       <section className="flex gap-[2px] mb-5 justify-center mx-5 items-end">
         {newArray}
       </section>
