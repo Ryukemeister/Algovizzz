@@ -1,33 +1,87 @@
-function QuickSort(arr, start, end) {
-  let swaps = [];
+async function quickSort(arr, start, end) {
+  let moves = [];
 
   if (start >= end) {
     return;
   }
 
-  let index = partition(arr, start, end, swaps);
+  const index = await partition(moves, arr, start, end);
+
+  await quickSort(arr, start, index - 1);
+  await quickSort(arr, index + 1, end);
+
+  return moves;
+  // arrTobeUpdated([...arr]);
+}
+
+async function partition(moves, arr, start, end) {
+  let pivotValue = arr[end];
+  let pivotIndex = start;
+
+  for (let i = start; i < end; i++) {
+    if (i !== end) {
+      moves.push([i, end]);
+    }
+
+    if (arr[i] < pivotValue) {
+      await swap(arr, i, pivotIndex);
+      moves.push([i, pivotIndex]);
+      pivotIndex++;
+    }
+  }
+  await swap(arr, pivotIndex, end);
+  // moves.push([pivotIndex, end]);
+  moves.push([end, pivotIndex]);
+
+  return pivotIndex;
+}
+
+async function swap(arr, a, b) {
+  // await sleep(40);
+  let temp = arr[a];
+  arr[a] = arr[b];
+  arr[b] = temp;
+}
+
+/*
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function QuickSort(arr, start, end) {
+  // console.log(arr, "Start index:", start, "End index:", end);
+  let swaps = [];
+
+  if (start >= end) {
+    return arr;
+  }
+
+  let [index, change] = partition(swaps, arr, start, end);
 
   QuickSort(arr, start, index - 1);
   QuickSort(arr, index + 1, end);
 
-  // return QuickSort(arr, start, index - 1), QuickSort(arr, index + 1, end);
+  return change;
 }
 
-function partition(arr, start, end, swaps) {
+function partition(swaps, arr, start, end) {
   let pivotIndex = start;
   let pivotValue = arr[end];
 
   for (let i = start; i < end; i++) {
     if (arr[i] < pivotValue) {
+      // arrayToBeFilled.push([arr]);
       swap(arr, i, pivotIndex);
       swaps.push([i, pivotIndex]);
       pivotIndex++;
     }
   }
   swap(arr, pivotIndex, end);
-  swaps.push([pivotIndex, end]);
+  // swaps.push([pivotIndex, end]);
+  // swaps.push([end, pivotIndex]);
 
-  return pivotIndex;
+  return [pivotIndex, swaps];
+  // return [pivotIndex, swaps];
 }
 
 function swap(arr, a, b) {
@@ -35,6 +89,7 @@ function swap(arr, a, b) {
   arr[a] = arr[b];
   arr[b] = temp;
 }
+*/
 
 /*
 function QuickSort(arr) {
@@ -63,4 +118,4 @@ function QuickSort(arr) {
 }
 */
 
-export default QuickSort;
+export default quickSort;
