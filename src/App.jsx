@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import BubbleSort from "./SortingAlgorithms/BubbleSort";
 import InsertionSort from "./SortingAlgorithms/InsertionSort";
 import MergeSort from "./SortingAlgorithms/MergeSort";
+// import QuickSort from "./SortingAlgorithms/QuickSort";
+import quickSort from "./SortingAlgorithms/QuickSort";
 
 // 'Bubble sort', 'selection sort', 'insertion sort', 'quick sort', 'merge sort', 'heap sort'
 //  "Bubble sort", "heap sort", "insertion sort", "merge sort", "quick sort", "selection sort"
@@ -48,6 +50,18 @@ function App() {
     // console.log(swaps);
 
     animate(swaps);
+  }
+
+  async function getQuickSort() {
+    const newArray = numbersArray.slice();
+    // const x = await quickSort(numbersArray, 0, numbersArray.length - 1);
+    const x = await quickSort(newArray, 0, newArray.length - 1);
+
+    // QuickSort(numbersArray, 0, numbersArray.length - 1);
+    // setNumbersArray([...numbersArray]);
+    // console.log(numbersArray);
+    console.log(x);
+    animate(x);
   }
 
   function animate(swaps) {
@@ -100,27 +114,33 @@ function App() {
         <div className="lg:flex lg:gap-x-4 lg:mr-4 mx-4">
           <button
             onClick={getRandomArray}
-            className="py-[7px] px-4 mr-4 mb-2 lg:mb-0 lg:mr-0 outline-none font-montserrat bg-pink-500 text-white font-semibold rounded-full shadow-sm hover:bg-pink-600"
+            className="py-[7px] px-4 mr-4 mb-2 lg:mb-0 lg:mr-0 outline-none font-montserrat bg-pink-500 text-white font-semibold rounded-full shadow-sm hover:bg-pink-600 hover:shadow-md"
           >
             Generate new array
           </button>
           <button
             onClick={getMergeSort}
-            className="py-[6px] px-4 outline-none font-montserrat bg-yellow-500 text-white font-semibold rounded-full shadow-sm hover:bg-yellow-600"
+            className="py-[6px] px-4 outline-none sm:mr-4 lg:mr-0 font-montserrat bg-yellow-500 text-white font-semibold rounded-full shadow-sm hover:bg-yellow-600 hover:shadow-md"
           >
             Merge sort
           </button>
           <button
             onClick={getBubbleSort}
-            className="py-[6px] px-4 mr-4 lg:mr-0 outline-none font-montserrat bg-blue-500 text-white font-semibold rounded-full shadow-sm hover:bg-blue-600"
+            className="py-[6px] px-4 mr-4 mb-2 lg:mb-0 lg:mr-0 outline-none font-montserrat bg-blue-500 text-white font-semibold rounded-full shadow-sm hover:bg-blue-600 hover:shadow-md"
           >
             Bubble sort
           </button>
           <button
             onClick={getInsertionSort}
-            className="py-[6px] px-4 outline-none font-montserrat bg-violet-500 text-white font-semibold rounded-full shadow-sm hover:bg-violet-600"
+            className="py-[6px] px-4 outline-none mr-4 sm:mr-4 font-montserrat bg-green-500 text-white font-semibold rounded-full shadow-sm hover:bg-green-600 hover:shadow-md"
           >
             Insertion sort
+          </button>
+          <button
+            onClick={getQuickSort}
+            className="py-[6px] px-4 outline-none font-montserrat bg-violet-500 text-white font-semibold rounded-full shadow-sm hover:bg-violet-600 hover:shadow-md"
+          >
+            Quick sort
           </button>
         </div>
       </div>
