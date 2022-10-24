@@ -1,42 +1,48 @@
-async function quickSort(arr, start, end) {
+function quickSort(arr, start, end) {
+  // Moves array record every bar swap
   let moves = [];
+
+  // Condition to break out of the recurssion
 
   if (start >= end) {
     return;
   }
 
-  const index = await partition(moves, arr, start, end);
+  // Gets the position of the pivot index
+  const index = partition(moves, arr, start, end);
 
-  await quickSort(arr, start, index - 1);
-  await quickSort(arr, index + 1, end);
+  quickSort(arr, start, index - 1);
+  quickSort(arr, index + 1, end);
 
   return moves;
-  // arrTobeUpdated([...arr]);
 }
 
-async function partition(moves, arr, start, end) {
+function partition(moves, arr, start, end) {
   let pivotValue = arr[end];
   let pivotIndex = start;
 
   for (let i = start; i < end; i++) {
+    /*
     if (i !== end) {
       moves.push([i, end]);
     }
+    */
 
     if (arr[i] < pivotValue) {
-      await swap(arr, i, pivotIndex);
+      swap(arr, i, pivotIndex);
+      // moves.push([i, pivotIndex]);
       moves.push([i, pivotIndex]);
       pivotIndex++;
     }
   }
-  await swap(arr, pivotIndex, end);
-  // moves.push([pivotIndex, end]);
-  moves.push([end, pivotIndex]);
+  swap(arr, pivotIndex, end);
+  moves.push([pivotIndex, end]);
+  // moves.push([end, pivotIndex]);
 
   return pivotIndex;
 }
 
-async function swap(arr, a, b) {
+function swap(arr, a, b) {
   // await sleep(40);
   let temp = arr[a];
   arr[a] = arr[b];
