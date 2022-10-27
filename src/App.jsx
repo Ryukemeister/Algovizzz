@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import BubbleSort from "./SortingAlgorithms/BubbleSort";
 import InsertionSort from "./SortingAlgorithms/InsertionSort";
-import MergeSort from "./SortingAlgorithms/MergeSort";
+// import MergeSort from "./SortingAlgorithms/MergeSort";
 // import QuickSort from "./SortingAlgorithms/QuickSort";
+import mergeSort from "./SortingAlgorithms/MergeSort";
 import quickSort from "./SortingAlgorithms/QuickSort";
 
 // 'Bubble sort', 'selection sort', 'insertion sort', 'quick sort', 'merge sort', 'heap sort'
@@ -29,10 +30,38 @@ function App() {
 
   function getMergeSort() {
     let newArrayy = numbersArray.slice();
+    let resultsArray = [];
+    const rightIndex = Math.floor(numbersArray.length / 2) + 1;
 
-    const arr = MergeSort(newArrayy);
+    // const arr = mergeSort(newArrayy, 0, 10, resultsArray);
+    //const arr = MergeSort(newArrayy);
+    const arr = mergeSort(newArray);
     // setNumbersArray(arr);
-    console.log(arr);
+    // console.log(arr);
+    animateMergeSort(arr);
+  }
+
+  function animateMergeSort(swaps) {
+    if (swaps.length === 0) {
+      // console.log(numbersArray);
+      setIndices([]);
+      return;
+    }
+
+    const { comparison, swap } = swaps.shift();
+    console.log("Comparison array:", comparison);
+    console.log("Swaps array:", swap);
+
+    const [i, j] = comparison;
+
+    [numbersArray[i], numbersArray[j]] = [numbersArray[j], numbersArray[i]];
+
+    setNumbersArray([...numbersArray]);
+    setIndices([i, j]);
+
+    setTimeout(() => {
+      animateMergeSort(swaps);
+    }, 500);
   }
 
   function getBubbleSort() {
@@ -55,12 +84,12 @@ function App() {
   async function getQuickSort() {
     const newArray = numbersArray.slice();
     // const x = await quickSort(numbersArray, 0, numbersArray.length - 1);
-    const x = await quickSort(newArray, 0, newArray.length - 1);
-
+    const x = quickSort(newArray, 0, newArray.length - 1);
+    console.log(newArray);
     // QuickSort(numbersArray, 0, numbersArray.length - 1);
     // setNumbersArray([...numbersArray]);
     // console.log(numbersArray);
-    console.log(x);
+    console.log(...x);
     animate(x);
   }
 
