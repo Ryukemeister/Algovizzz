@@ -5,6 +5,7 @@ import InsertionSort from "./SortingAlgorithms/InsertionSort";
 // import QuickSort from "./SortingAlgorithms/QuickSort";
 import mergeSort from "./SortingAlgorithms/MergeSort";
 import quickSort from "./SortingAlgorithms/QuickSort";
+import selectionSort from "./SortingAlgorithms/SelectionSort";
 
 // 'Bubble sort', 'selection sort', 'insertion sort', 'quick sort', 'merge sort', 'heap sort'
 //  "Bubble sort", "heap sort", "insertion sort", "merge sort", "quick sort", "selection sort"
@@ -30,8 +31,6 @@ function App() {
 
   function getMergeSort() {
     let newArrayy = numbersArray.slice();
-    let resultsArray = [];
-    const rightIndex = Math.floor(numbersArray.length / 2) + 1;
 
     // const arr = mergeSort(newArrayy, 0, 10, resultsArray);
     //const arr = MergeSort(newArrayy);
@@ -48,13 +47,15 @@ function App() {
       return;
     }
 
+    // const swap = swaps.shift();
+    // console.log(swap);
+
     const { comparison, swap } = swaps.shift();
-    console.log("Comparison array:", comparison);
-    console.log("Swaps array:", swap);
+    console.log("Comparison array:", comparison, "Swaps array:", swap);
 
     const [i, j] = comparison;
 
-    [numbersArray[i], numbersArray[j]] = [numbersArray[j], numbersArray[i]];
+    // [numbersArray[i], numbersArray[j]] = [numbersArray[j], numbersArray[i]];
 
     setNumbersArray([...numbersArray]);
     setIndices([i, j]);
@@ -78,6 +79,14 @@ function App() {
     // console.log(newArrayyyyy);
     // console.log(swaps);
 
+    animate(swaps);
+  }
+
+  function getSelectionSort() {
+    const newArray = numbersArray.slice();
+    const swaps = selectionSort(newArray);
+
+    // console.log(swaps);
     animate(swaps);
   }
 
@@ -161,15 +170,21 @@ function App() {
           </button>
           <button
             onClick={getInsertionSort}
-            className="py-[6px] px-4 outline-none mr-4 sm:mr-4 font-montserrat bg-green-500 text-white font-semibold rounded-full shadow-sm hover:bg-green-600 hover:shadow-md"
+            className="py-[6px] px-4 outline-none mr-4 lg:mr-0 sm:mr-4 font-montserrat bg-green-500 text-white font-semibold rounded-full shadow-sm hover:bg-green-600 hover:shadow-md"
           >
             Insertion sort
           </button>
           <button
             onClick={getQuickSort}
-            className="py-[6px] px-4 outline-none font-montserrat bg-violet-500 text-white font-semibold rounded-full shadow-sm hover:bg-violet-600 hover:shadow-md"
+            className="py-[6px] px-4 outline-none mr-4 lg:mr-0 sm:mr-4 font-montserrat bg-violet-500 text-white font-semibold rounded-full shadow-sm hover:bg-violet-600 hover:shadow-md"
           >
             Quick sort
+          </button>
+          <button
+            onClick={getSelectionSort}
+            className="py-[6px] px-4 outline-none font-montserrat bg-orange-500 text-white font-semibold rounded-full shadow-sm hover:bg-orange-600 hover:shadow-md"
+          >
+            Selection sort
           </button>
         </div>
       </div>
