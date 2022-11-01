@@ -6,6 +6,7 @@ import InsertionSort from "./SortingAlgorithms/InsertionSort";
 import mergeSort from "./SortingAlgorithms/MergeSort";
 import quickSort from "./SortingAlgorithms/QuickSort";
 import selectionSort from "./SortingAlgorithms/SelectionSort";
+import heapSort from "./SortingAlgorithms/HeapSort";
 
 // 'Bubble sort', 'selection sort', 'insertion sort', 'quick sort', 'merge sort', 'heap sort'
 //  "Bubble sort", "heap sort", "insertion sort", "merge sort", "quick sort", "selection sort"
@@ -73,12 +74,20 @@ function App() {
   }
 
   function getInsertionSort() {
-    const newArrayyyyy = numbersArray.slice();
-    const swaps = InsertionSort(newArrayyyyy);
+    const newArray = numbersArray.slice();
+    const swaps = InsertionSort(newArray);
 
     // console.log(newArrayyyyy);
     // console.log(swaps);
 
+    animate(swaps);
+  }
+
+  function getHeapSort() {
+    const newArray = numbersArray.slice();
+    const swaps = heapSort(newArray, newArray.length);
+
+    // console.log(swaps);
     animate(swaps);
   }
 
@@ -158,13 +167,13 @@ function App() {
           </button>
           <button
             onClick={getMergeSort}
-            className="py-[6px] px-4 outline-none sm:mr-4 lg:mr-0 font-montserrat bg-yellow-500 text-white font-semibold rounded-full shadow-sm hover:bg-yellow-600 hover:shadow-md"
+            className="py-[6px] px-4 outline-none mr-4 lg:mr-0 font-montserrat bg-yellow-500 text-white font-semibold rounded-full shadow-sm hover:bg-yellow-600 hover:shadow-md"
           >
             Merge sort
           </button>
           <button
             onClick={getBubbleSort}
-            className="py-[6px] px-4 mr-4 mb-2 lg:mb-0 lg:mr-0 outline-none font-montserrat bg-blue-500 text-white font-semibold rounded-full shadow-sm hover:bg-blue-600 hover:shadow-md"
+            className="py-[6px] px-4 mr-4 mb-2 lg:mb-0 lg:mr-0 outline-none font-montserrat bg-blue-600 text-white font-semibold rounded-full shadow-sm hover:bg-blue-700 hover:shadow-md"
           >
             Bubble sort
           </button>
@@ -176,15 +185,21 @@ function App() {
           </button>
           <button
             onClick={getQuickSort}
-            className="py-[6px] px-4 outline-none mr-4 lg:mr-0 sm:mr-4 font-montserrat bg-violet-500 text-white font-semibold rounded-full shadow-sm hover:bg-violet-600 hover:shadow-md"
+            className="py-[6px] px-4 mb-2 lg:mb-0 outline-none mr-4 lg:mr-0 sm:mr-4 font-montserrat bg-violet-500 text-white font-semibold rounded-full shadow-sm hover:bg-violet-600 hover:shadow-md"
           >
             Quick sort
           </button>
           <button
             onClick={getSelectionSort}
-            className="py-[6px] px-4 outline-none font-montserrat bg-orange-500 text-white font-semibold rounded-full shadow-sm hover:bg-orange-600 hover:shadow-md"
+            className="py-[6px] px-4 outline-none mr-4 lg:mr-0 font-montserrat bg-orange-500 text-white font-semibold rounded-full shadow-sm hover:bg-orange-600 hover:shadow-md"
           >
             Selection sort
+          </button>
+          <button
+            onClick={getHeapSort}
+            className="py-[6px] px-4 outline-none font-montserrat bg-stone-100 text-black font-semibold rounded-full shadow-sm hover:bg-stone-200 hover:shadow-md"
+          >
+            Heap sort
           </button>
         </div>
       </div>
