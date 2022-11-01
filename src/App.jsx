@@ -161,13 +161,13 @@ function App() {
         <div className="lg:flex lg:gap-x-4 lg:mr-4 mx-4">
           <button
             onClick={getRandomArray}
-            className="py-[7px] px-4 mr-4 mb-2 lg:mb-0 lg:mr-0 outline-none font-montserrat bg-pink-500 text-white font-semibold rounded-full shadow-sm hover:bg-pink-600 hover:shadow-md"
+            className="py-[7px] px-4 mr-6 mb-2 lg:mb-0 lg:mr-0 outline-none font-montserrat bg-pink-500 text-white font-semibold rounded-full shadow-sm hover:bg-pink-600 hover:shadow-md"
           >
             Generate new array
           </button>
           <button
             onClick={getMergeSort}
-            className="py-[6px] px-4 outline-none mr-4 lg:mr-0 font-montserrat bg-yellow-500 text-white font-semibold rounded-full shadow-sm hover:bg-yellow-600 hover:shadow-md"
+            className="py-[6px] px-4 outline-none mr-16 lg:mr-0 font-montserrat bg-yellow-500 text-white font-semibold rounded-full shadow-sm hover:bg-yellow-600 hover:shadow-md"
           >
             Merge sort
           </button>
@@ -179,7 +179,7 @@ function App() {
           </button>
           <button
             onClick={getInsertionSort}
-            className="py-[6px] px-4 outline-none mr-4 lg:mr-0 sm:mr-4 font-montserrat bg-green-500 text-white font-semibold rounded-full shadow-sm hover:bg-green-600 hover:shadow-md"
+            className="py-[6px] px-4 outline-none mr-14 lg:mr-0 sm:mr-4 font-montserrat bg-green-500 text-white font-semibold rounded-full shadow-sm hover:bg-green-600 hover:shadow-md"
           >
             Insertion sort
           </button>
@@ -191,7 +191,7 @@ function App() {
           </button>
           <button
             onClick={getSelectionSort}
-            className="py-[6px] px-4 outline-none mr-4 lg:mr-0 font-montserrat bg-orange-500 text-white font-semibold rounded-full shadow-sm hover:bg-orange-600 hover:shadow-md"
+            className="py-[6px] px-4 outline-none mr-14 lg:mr-0 font-montserrat bg-orange-500 text-white font-semibold rounded-full shadow-sm hover:bg-orange-600 hover:shadow-md"
           >
             Selection sort
           </button>
