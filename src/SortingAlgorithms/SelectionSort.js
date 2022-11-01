@@ -1,10 +1,11 @@
 function selectionSort(arr) {
   let swaps = [];
 
+  // This loop iterates through the unsorted array
   for (let i = 0; i < arr.length - 1; i++) {
     let minIndex = i;
 
-    // This for loops runs through the whole array
+    // This loop runs through the whole array
     // and determines the min element in the array
     for (let j = i + 1; j < arr.length; j++) {
       if (arr[j] < arr[minIndex]) {
