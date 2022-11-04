@@ -1,103 +1,7 @@
-function quickSort(arr, start, end) {
-  // Moves array record every bar swap
-  let moves = [];
-
-  // Condition to break out of the recurssion
-
-  if (start >= end) {
-    return;
-  }
-
-  // Gets the position of the pivot index
-  const index = partition(moves, arr, start, end);
-
-  quickSort(arr, start, index - 1);
-  quickSort(arr, index + 1, end);
-
-  return moves;
-}
-
-function partition(moves, arr, start, end) {
-  let pivotValue = arr[end];
-  let pivotIndex = start;
-
-  for (let i = start; i < end; i++) {
-    /*
-    if (i !== end) {
-      moves.push([i, end]);
-    }
-    */
-
-    if (arr[i] < pivotValue) {
-      swap(arr, i, pivotIndex);
-      // moves.push([i, pivotIndex]);
-      moves.push([i, pivotIndex]);
-      pivotIndex++;
-    }
-  }
-  swap(arr, pivotIndex, end);
-  moves.push([pivotIndex, end]);
-  // moves.push([end, pivotIndex]);
-
-  return pivotIndex;
-}
-
-function swap(arr, a, b) {
-  // await sleep(40);
-  let temp = arr[a];
-  arr[a] = arr[b];
-  arr[b] = temp;
-}
-
 /*
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+// Classic quick sort algorithm
+// code from codevolution
 
-function QuickSort(arr, start, end) {
-  // console.log(arr, "Start index:", start, "End index:", end);
-  let swaps = [];
-
-  if (start >= end) {
-    return arr;
-  }
-
-  let [index, change] = partition(swaps, arr, start, end);
-
-  QuickSort(arr, start, index - 1);
-  QuickSort(arr, index + 1, end);
-
-  return change;
-}
-
-function partition(swaps, arr, start, end) {
-  let pivotIndex = start;
-  let pivotValue = arr[end];
-
-  for (let i = start; i < end; i++) {
-    if (arr[i] < pivotValue) {
-      // arrayToBeFilled.push([arr]);
-      swap(arr, i, pivotIndex);
-      swaps.push([i, pivotIndex]);
-      pivotIndex++;
-    }
-  }
-  swap(arr, pivotIndex, end);
-  // swaps.push([pivotIndex, end]);
-  // swaps.push([end, pivotIndex]);
-
-  return [pivotIndex, swaps];
-  // return [pivotIndex, swaps];
-}
-
-function swap(arr, a, b) {
-  let temp = arr[a];
-  arr[a] = arr[b];
-  arr[b] = temp;
-}
-*/
-
-/*
 function QuickSort(arr) {
   if (arr.length < 2) {
     return arr;
@@ -123,5 +27,50 @@ function QuickSort(arr) {
   // return swaps;
 }
 */
+
+// This approach is from the coding train channel
+// Swaps array records all array swaps
+let swaps = [];
+
+function quickSort(arr, start, end) {
+  // Condition to break out of the recurssion
+  if (start >= end) {
+    return;
+  }
+
+  // Gets the position of the pivot index
+  let index = partition(swaps, arr, start, end);
+
+  // Recursively applying quickSort on left and right part
+  quickSort(arr, start, index - 1);
+  quickSort(arr, index + 1, end);
+
+  return swaps;
+}
+
+// Partition function gives out the current position of the pivot index
+function partition(swaps, arr, start, end) {
+  let pivotValue = arr[end];
+  let pivotIndex = start;
+
+  for (let i = start; i < end; i++) {
+    if (arr[i] < pivotValue) {
+      swap(arr, i, pivotIndex);
+      swaps.push([i, pivotIndex]);
+      pivotIndex++;
+    }
+  }
+  swap(arr, pivotIndex, end);
+  swaps.push([pivotIndex, end]);
+
+  return pivotIndex;
+}
+
+// Swap function swaps two given variables
+function swap(arr, a, b) {
+  let temp = arr[a];
+  arr[a] = arr[b];
+  arr[b] = temp;
+}
 
 export default quickSort;
