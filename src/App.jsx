@@ -99,7 +99,7 @@ function App() {
     animate(swaps);
   }
 
-  async function getQuickSort() {
+  function getQuickSort() {
     const newArray = numbersArray.slice();
     const x = quickSort(newArray, 0, newArray.length - 1);
     // console.log(newArray);
