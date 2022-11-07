@@ -1,5 +1,7 @@
-// Original mergeSort
 /*
+// Original mergeSort
+// from codevolution
+
 function MergeSort(arr) {
   let swaps = [];
 
@@ -80,13 +82,18 @@ function merge(array, resultsArr, leftIndex, mid, rightIndex) {
 }
 */
 
-// Merge Sorting
+// Merge Sorting using Clements method
+
 function mergeSort(array) {
-  const animations = [];
+  let animations = [];
 
   if (array.length <= 1) return array;
+
+  // Copy of the orignal array
+  // so that we can keep track of all the changes in the OG array
   const auxiliaryArray = array.slice();
 
+  // console.log(array);
   mergeSortHelper(array, 0, array.length - 1, auxiliaryArray, animations);
 
   return animations;
@@ -102,6 +109,7 @@ function mergeSortHelper(
   if (startIndex === endIndex) return;
 
   const middleIndex = Math.floor((startIndex + endIndex) / 2);
+
   mergeSortHelper(
     auxiliaryArray,
     startIndex,
@@ -139,15 +147,24 @@ function doMerge(
   let i = startIndex;
   let j = middleIndex + 1;
 
+  console.log(k, i, j);
+
   while (i <= middleIndex && j <= endIndex) {
     const animation = {};
     animation.comparison = [i, j];
 
     if (auxiliaryArray[i] <= auxiliaryArray[j]) {
+      //animation.swap = [k, i];
       animation.swap = [k, i];
+      swap(mainArray, k, i);
+      // swap(mainArray, k, i);
+      // swap(auxiliaryArray, k, i);
       mainArray[k++] = auxiliaryArray[i++];
     } else {
-      animation.swap = [k, j];
+      // animation.swap = [k, j];
+      animation.swap = [i, j];
+      // swap(auxiliaryArray, k, j);
+      swap(mainArray, i, j);
       mainArray[k++] = auxiliaryArray[j++];
     }
     animations.push(animation);
@@ -158,6 +175,9 @@ function doMerge(
       comparison: [i, i],
       swap: [k, i],
     });
+    swap(mainArray, k, i);
+    // swap(auxiliaryArray, k, i);
+
     mainArray[k++] = auxiliaryArray[i++];
   }
 
@@ -166,8 +186,17 @@ function doMerge(
       comparison: [j, j],
       swap: [k, j],
     });
+    swap(mainArray, k, j);
+    // swap(auxiliaryArray, k, j);
+
     mainArray[k++] = auxiliaryArray[j++];
   }
+}
+
+function swap(arr, a, b) {
+  let temp = arr[a];
+  arr[a] = arr[b];
+  arr[b] = temp;
 }
 
 export default mergeSort;
