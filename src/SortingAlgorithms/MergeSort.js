@@ -1,6 +1,5 @@
 /*
-// Original mergeSort
-// from codevolution
+// Original mergeSort solution from codevolution
 
 function MergeSort(arr) {
   let swaps = [];
@@ -31,172 +30,54 @@ function merge(swaps, leftArr, rightArr) {
 }
 */
 
-/*
-// From stack overflow
+function Mergesort(array, length) {
+  // Moves variable captures the index and the
+  // value that is to be inserted at that index
+  let moves = [];
 
-function mergeSort(array, leftIndex, rightIndex, resultsArray) {
-  let length = rightIndex - leftIndex;
+  divide(array, moves, 0, length - 1);
 
-  // console.log(array, leftIndex, rightIndex);
-  // console.log("Length:", length);
-
-  if (length < 2) {
-    return array;
-  }
-  let mid = leftIndex + Math.floor(length / 2);
-  // console.log("Mid:", mid);
-
-  mergeSort(array, leftIndex, mid, resultsArray);
-  mergeSort(array, mid, rightIndex, resultsArray);
-  //  delay(1000 * Math.sqrt(rightIndex - leftIndex));
-  // draw(array);
-  merge(array, resultsArray, leftIndex, mid, rightIndex);
-
-  return array;
+  return moves;
 }
 
-function merge(array, resultsArr, leftIndex, mid, rightIndex) {
-  var result = [];
+function divide(array, moves, start, end) {
+  // Condition to break out of recursion
+  if (start < end) {
+    let mid = Math.floor((end + start) / 2);
 
-  var l = leftIndex,
-    r = mid;
-  while (l < mid && r < rightIndex) {
-    if (array[l] < array[r]) {
-      result.push(array[l++]);
-    } else {
-      result.push(array[r++]);
-    }
-  }
-  result = result
-    .concat(array.slice(l, mid))
-    .concat(array.slice(r, rightIndex));
+    // Recursively subdividing the array into smaller arrrays
+    // until the array length becomes equal to 1
+    divide(array, moves, start, mid);
+    divide(array, moves, mid + 1, end);
 
-  // resultsArr.push([result]);
-  // resultsArr.push([array]);
-  console.log("Results:", result);
-  console.log("OG array:", array);
-
-  for (let i = 0; i < rightIndex - leftIndex; i++) {
-    array[leftIndex + i] = result[i];
-  }
-}
-*/
-
-// Merge Sorting using Clements method
-
-function mergeSort(array) {
-  let animations = [];
-
-  if (array.length <= 1) return array;
-
-  // Copy of the orignal array
-  // so that we can keep track of all the changes in the OG array
-  const auxiliaryArray = array.slice();
-
-  // console.log(array);
-  mergeSortHelper(array, 0, array.length - 1, auxiliaryArray, animations);
-
-  return animations;
-}
-
-function mergeSortHelper(
-  mainArray,
-  startIndex,
-  endIndex,
-  auxiliaryArray,
-  animations
-) {
-  if (startIndex === endIndex) return;
-
-  const middleIndex = Math.floor((startIndex + endIndex) / 2);
-
-  mergeSortHelper(
-    auxiliaryArray,
-    startIndex,
-    middleIndex,
-    mainArray,
-    animations
-  );
-  mergeSortHelper(
-    auxiliaryArray,
-    middleIndex + 1,
-    endIndex,
-    mainArray,
-    animations
-  );
-
-  doMerge(
-    mainArray,
-    startIndex,
-    middleIndex,
-    endIndex,
-    auxiliaryArray,
-    animations
-  );
-}
-
-function doMerge(
-  mainArray,
-  startIndex,
-  middleIndex,
-  endIndex,
-  auxiliaryArray,
-  animations
-) {
-  let k = startIndex;
-  let i = startIndex;
-  let j = middleIndex + 1;
-
-  console.log(k, i, j);
-
-  while (i <= middleIndex && j <= endIndex) {
-    const animation = {};
-    animation.comparison = [i, j];
-
-    if (auxiliaryArray[i] <= auxiliaryArray[j]) {
-      //animation.swap = [k, i];
-      animation.swap = [k, i];
-      swap(mainArray, k, i);
-      // swap(mainArray, k, i);
-      // swap(auxiliaryArray, k, i);
-      mainArray[k++] = auxiliaryArray[i++];
-    } else {
-      // animation.swap = [k, j];
-      animation.swap = [i, j];
-      // swap(auxiliaryArray, k, j);
-      swap(mainArray, i, j);
-      mainArray[k++] = auxiliaryArray[j++];
-    }
-    animations.push(animation);
-  }
-
-  while (i <= middleIndex) {
-    animations.push({
-      comparison: [i, i],
-      swap: [k, i],
-    });
-    swap(mainArray, k, i);
-    // swap(auxiliaryArray, k, i);
-
-    mainArray[k++] = auxiliaryArray[i++];
-  }
-
-  while (j <= endIndex) {
-    animations.push({
-      comparison: [j, j],
-      swap: [k, j],
-    });
-    swap(mainArray, k, j);
-    // swap(auxiliaryArray, k, j);
-
-    mainArray[k++] = auxiliaryArray[j++];
+    // Repeteadly merging the subdivided arrays to get a single
+    // sorted array
+    merge(array, moves, start, mid, end);
   }
 }
 
-function swap(arr, a, b) {
-  let temp = arr[a];
-  arr[a] = arr[b];
-  arr[b] = temp;
+function merge(array, moves, start, mid, end) {
+  let sortedArray = [];
+
+  // i is start of the left part of the mid element
+  // j is the start of the right part of the mid element
+  let i = start,
+    j = mid + 1;
+  while (i <= mid && j <= end) {
+    if (array[i] <= array[j]) sortedArray.push(array[i++]);
+    else sortedArray.push(array[j++]);
+  }
+  while (i <= mid) {
+    sortedArray.push(array[i++]);
+  }
+  while (j <= end) {
+    sortedArray.push(array[j++]);
+  }
+
+  for (let i = start; i <= end; ++i) {
+    array[i] = sortedArray[i - start];
+    moves.push([i, array[i]]);
+  }
 }
 
-export default mergeSort;
+export default Mergesort;

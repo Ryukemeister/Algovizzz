@@ -1,15 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import BubbleSort from "./SortingAlgorithms/BubbleSort";
 import InsertionSort from "./SortingAlgorithms/InsertionSort";
-// import MergeSort from "./SortingAlgorithms/MergeSort";
-// import QuickSort from "./SortingAlgorithms/QuickSort";
-import mergeSort from "./SortingAlgorithms/MergeSort";
+import Mergesort from "./SortingAlgorithms/MergeSort";
 import quickSort from "./SortingAlgorithms/QuickSort";
 import selectionSort from "./SortingAlgorithms/SelectionSort";
 import heapSort from "./SortingAlgorithms/HeapSort";
 
-// 'Bubble sort', 'selection sort', 'insertion sort', 'quick sort', 'merge sort', 'heap sort'
-//  "Bubble sort", "heap sort", "insertion sort", "merge sort", "quick sort", "selection sort"
+// Soring algorithms to be covered are as follows
+// "Bubble sort", "heap sort", "insertion sort", "merge sort", "quick sort", "selection sort"
 
 function App() {
   const [numbersArray, setNumbersArray] = useState([]);
@@ -33,36 +31,27 @@ function App() {
   function getMergeSort() {
     let newArrayy = numbersArray.slice();
 
-    // const arr = mergeSort(newArrayy, 0, 10, resultsArray);
-    //const arr = MergeSort(newArrayy);
-    const arr = mergeSort(newArray);
-    // setNumbersArray(arr);
+    const arr = Mergesort(newArrayy, newArray.length);
     // console.log(arr);
-    animateMergeSort(arr);
+
+    animateMergeSwaps(arr);
   }
 
-  function animateMergeSort(swaps) {
+  function animateMergeSwaps(swaps) {
     if (swaps.length === 0) {
-      // console.log(numbersArray);
       setIndices([]);
       return;
     }
 
-    // const swap = swaps.shift();
-    // console.log(swap);
-
-    const { comparison, swap } = swaps.shift();
-    console.log("Comparison array:", comparison, "Swaps array:", swap);
-
-    const [i, j] = comparison;
-
-    // [numbersArray[i], numbersArray[j]] = [numbersArray[j], numbersArray[i]];
-
+    const [indexToBeInserted, valueToBeInserted] = swaps.shift();
+    numbersArray[indexToBeInserted] = valueToBeInserted;
     setNumbersArray([...numbersArray]);
-    setIndices([i, j]);
+    // console.log(indexToBeInserted, valueToBeInserted);
+
+    setIndices([indexToBeInserted, indexToBeInserted + 1]);
 
     setTimeout(() => {
-      animateMergeSort(swaps);
+      animateMergeSwaps(swaps);
     }, 500);
   }
 
