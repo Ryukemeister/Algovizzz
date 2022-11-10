@@ -5,7 +5,7 @@ import Mergesort from "./SortingAlgorithms/MergeSort";
 import quickSort from "./SortingAlgorithms/QuickSort";
 import selectionSort from "./SortingAlgorithms/SelectionSort";
 import heapSort from "./SortingAlgorithms/HeapSort";
-
+import SortingBars from "./components/SortingBars";
 // Soring algorithms to be covered are as follows
 // "Bubble sort", "heap sort", "insertion sort", "merge sort", "quick sort", "selection sort"
 
@@ -28,15 +28,6 @@ function App() {
     setNumbersArray(array);
   }
 
-  function getMergeSort() {
-    let newArrayy = numbersArray.slice();
-
-    const arr = Mergesort(newArrayy, newArray.length);
-    // console.log(arr);
-
-    animateMergeSwaps(arr);
-  }
-
   function animateMergeSwaps(swaps) {
     if (swaps.length === 0) {
       setIndices([]);
@@ -55,50 +46,8 @@ function App() {
     }, 500);
   }
 
-  function getBubbleSort() {
-    const newArrayy = [...numbersArray];
-    const swaps = BubbleSort(newArrayy);
-
-    animate(swaps);
-  }
-
-  function getInsertionSort() {
-    const newArray = numbersArray.slice();
-    const swaps = InsertionSort(newArray);
-
-    // console.log(newArrayyyyy);
-    // console.log(swaps);
-
-    animate(swaps);
-  }
-
-  function getHeapSort() {
-    const newArray = numbersArray.slice();
-    const swaps = heapSort(newArray, newArray.length);
-
-    // console.log(swaps);
-    animate(swaps);
-  }
-
-  function getSelectionSort() {
-    const newArray = numbersArray.slice();
-    const swaps = selectionSort(newArray);
-
-    // console.log(swaps);
-    animate(swaps);
-  }
-
-  function getQuickSort() {
-    const newArray = numbersArray.slice();
-    const x = quickSort(newArray, 0, newArray.length - 1);
-    // console.log(newArray);
-
-    animate(x);
-  }
-
   function animate(swaps) {
     if (swaps.length === 0) {
-      // console.log(numbersArray);
       setIndices([]);
       return;
     }
@@ -116,20 +65,28 @@ function App() {
     }, 500);
   }
 
-  const newArray = numbersArray.map((el, i) => {
-    return (
-      <div
-        className="bar w-10 lg:w-24"
-        key={i}
-        style={{
-          height: `${el}px`,
-          backgroundColor: `${
-            indices && indices.includes(i) ? "rgb(34 197 94)" : "rgb(239 68 68)"
-          }`,
-        }}
-      ></div>
-    );
-  });
+  function getSortingAnimations(algorithm) {
+    const numbersArrayCopy = numbersArray.slice();
+    let swaps;
+
+    if (algorithm.name === "Mergesort") {
+      swaps = Mergesort(numbersArrayCopy, numbersArrayCopy.length);
+      animateMergeSwaps(swaps);
+    } else {
+      if (
+        algorithm.name === "BubbleSort" ||
+        algorithm.name === "selectionSort" ||
+        algorithm.name === "InsertionSort"
+      ) {
+        swaps = algorithm(numbersArrayCopy);
+      } else if (algorithm.name === "heapSort") {
+        swaps = algorithm(numbersArrayCopy, numbersArrayCopy.length);
+      } else if (algorithm.name === "quickSort") {
+        swaps = algorithm(numbersArrayCopy, 0, numbersArrayCopy.length - 1);
+      }
+      animate(swaps);
+    }
+  }
 
   useEffect(() => {
     getRandomArray();
@@ -151,46 +108,44 @@ function App() {
             Generate new array
           </button>
           <button
-            onClick={getMergeSort}
+            onClick={() => getSortingAnimations(Mergesort)}
             className="py-[6px] px-4 outline-none mr-16 sm:mr-4 lg:mr-0 font-montserrat bg-yellow-500 text-white font-semibold rounded-full shadow-sm hover:bg-yellow-600 hover:shadow-md"
           >
             Merge sort
           </button>
           <button
-            onClick={getBubbleSort}
+            onClick={() => getSortingAnimations(BubbleSort)}
             className="py-[6px] px-4 mr-4 mb-2 lg:mb-0 lg:mr-0 outline-none font-montserrat bg-blue-600 text-white font-semibold rounded-full shadow-sm hover:bg-blue-700 hover:shadow-md"
           >
             Bubble sort
           </button>
           <button
-            onClick={getInsertionSort}
+            onClick={() => getSortingAnimations(InsertionSort)}
             className="py-[6px] px-4 outline-none mr-14 lg:mr-0 sm:mr-4 font-montserrat bg-green-500 text-white font-semibold rounded-full shadow-sm hover:bg-green-600 hover:shadow-md"
           >
             Insertion sort
           </button>
           <button
-            onClick={getQuickSort}
+            onClick={() => getSortingAnimations(getQuickSort)}
             className="py-[6px] px-4 mb-2 lg:mb-0 outline-none mr-4 lg:mr-0 sm:mr-4 font-montserrat bg-violet-500 text-white font-semibold rounded-full shadow-sm hover:bg-violet-600 hover:shadow-md"
           >
             Quick sort
           </button>
           <button
-            onClick={getSelectionSort}
+            onClick={() => getSortingAnimations(selectionSort)}
             className="py-[6px] px-4 outline-none mr-14 sm:mr-4 lg:mr-0 font-montserrat bg-orange-500 text-white font-semibold rounded-full shadow-sm hover:bg-orange-600 hover:shadow-md"
           >
             Selection sort
           </button>
           <button
-            onClick={getHeapSort}
+            onClick={() => getSortingAnimations(heapSort)}
             className="py-[6px] px-4 outline-none font-montserrat bg-stone-100 text-black font-semibold rounded-full shadow-sm hover:bg-stone-200 hover:shadow-md"
           >
             Heap sort
           </button>
         </div>
       </div>
-      <section className="flex gap-[2px] mb-5 justify-center mx-5 items-end">
-        {newArray}
-      </section>
+      <SortingBars numbersArray={numbersArray} indices={indices} />
     </div>
   );
 }

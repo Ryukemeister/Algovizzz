@@ -33,30 +33,30 @@ function merge(swaps, leftArr, rightArr) {
 function Mergesort(array, length) {
   // Moves variable captures the index and the
   // value that is to be inserted at that index
-  let moves = [];
+  let swaps = [];
 
-  divide(array, moves, 0, length - 1);
+  divide(array, swaps, 0, length - 1);
 
-  return moves;
+  return swaps;
 }
 
-function divide(array, moves, start, end) {
+function divide(array, swaps, start, end) {
   // Condition to break out of recursion
   if (start < end) {
     let mid = Math.floor((end + start) / 2);
 
     // Recursively subdividing the array into smaller arrrays
     // until the array length becomes equal to 1
-    divide(array, moves, start, mid);
-    divide(array, moves, mid + 1, end);
+    divide(array, swaps, start, mid);
+    divide(array, swaps, mid + 1, end);
 
     // Repeteadly merging the subdivided arrays to get a single
     // sorted array
-    merge(array, moves, start, mid, end);
+    merge(array, swaps, start, mid, end);
   }
 }
 
-function merge(array, moves, start, mid, end) {
+function merge(array, swaps, start, mid, end) {
   let sortedArray = [];
 
   // i is start of the left part of the mid element
@@ -76,7 +76,7 @@ function merge(array, moves, start, mid, end) {
 
   for (let i = start; i <= end; ++i) {
     array[i] = sortedArray[i - start];
-    moves.push([i, array[i]]);
+    swaps.push([i, array[i]]);
   }
 }
 
