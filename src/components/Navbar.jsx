@@ -49,7 +49,7 @@ function Navbar({ numbersInfo, indicesInfo, getRandomArray }) {
     let swaps;
 
     if (algorithm.name === "Mergesort") {
-      swaps = Mergesort(numbersArrayCopy, numbersArrayCopy.length);
+      swaps = algorithm(numbersArrayCopy, numbersArrayCopy.length);
       animateMergeSwaps(swaps);
     } else {
       if (
