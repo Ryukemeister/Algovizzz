@@ -50,6 +50,7 @@ function Navbar({ numbersInfo, indicesInfo, getRandomArray }) {
 
     if (algorithm.name === "Mergesort") {
       swaps = algorithm(numbersArrayCopy, numbersArrayCopy.length);
+      console.log(swaps);
       animateMergeSwaps(swaps);
     } else {
       if (
@@ -63,6 +64,7 @@ function Navbar({ numbersInfo, indicesInfo, getRandomArray }) {
       } else if (algorithm.name === "quickSort") {
         swaps = algorithm(numbersArrayCopy, 0, numbersArrayCopy.length - 1);
       }
+      console.log(swaps);
       animate(swaps);
     }
   }
