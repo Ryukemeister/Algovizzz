@@ -46,26 +46,33 @@ function Navbar({ numbersInfo, indicesInfo, getRandomArray }) {
 
   function getSortingAnimations(algorithm) {
     const numbersArrayCopy = numbersArray.slice();
-    let swaps;
+    // let swaps;
 
     if (algorithm.name === "Mergesort") {
-      swaps = algorithm(numbersArrayCopy, numbersArrayCopy.length);
-      console.log(swaps);
-      animateMergeSwaps(swaps);
+      const swapOne = algorithm(numbersArrayCopy, numbersArrayCopy.length);
+      console.log(swapOne);
+      animateMergeSwaps(swapOne);
     } else {
       if (
         algorithm.name === "BubbleSort" ||
         algorithm.name === "selectionSort" ||
         algorithm.name === "InsertionSort"
       ) {
-        swaps = algorithm(numbersArrayCopy);
+        const swapTwo = algorithm(numbersArrayCopy);
+        animate(swapTwo);
       } else if (algorithm.name === "heapSort") {
-        swaps = algorithm(numbersArrayCopy, numbersArrayCopy.length);
+        const swapThree = algorithm(numbersArrayCopy, numbersArrayCopy.length);
+        animate(swapThree);
       } else if (algorithm.name === "quickSort") {
-        swaps = algorithm(numbersArrayCopy, 0, numbersArrayCopy.length - 1);
+        const swapFour = algorithm(
+          numbersArrayCopy,
+          0,
+          numbersArrayCopy.length - 1
+        );
+        animate(swapFour);
       }
-      console.log(swaps);
-      animate(swaps);
+      // console.log(swaps);
+      // animate(swaps);
     }
   }
 
