@@ -67,6 +67,13 @@ function Navbar({ numbersInfo, indicesInfo, getRandomArray }) {
     }
   }
 
+  function getBubbleSort() {
+    const numbersArrayCopy = numbersArray.slice();
+    const swaps = BubbleSort(numbersArrayCopy);
+
+    animate(swaps);
+  }
+
   return (
     <section>
       <div className="flex flex-col lg:flex-row lg:justify-between py-4 bg-gradient-to-r from-red-500 via-red-400 to-red-300 shadow-md">
@@ -89,7 +96,7 @@ function Navbar({ numbersInfo, indicesInfo, getRandomArray }) {
             Merge sort
           </button>
           <button
-            onClick={() => getSortingAnimations(BubbleSort)}
+            onClick={getBubbleSort}
             className="py-[6px] px-4 mr-4 mb-2 lg:mb-0 lg:mr-0 outline-none font-montserrat bg-blue-600 text-white font-semibold rounded-full shadow-sm hover:bg-blue-700 hover:shadow-md"
           >
             Bubble sort
