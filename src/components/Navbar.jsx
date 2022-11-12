@@ -81,6 +81,41 @@ function Navbar({ numbersInfo, indicesInfo, getRandomArray }) {
     animate(swaps);
   }
 
+  function getSelectionSort() {
+    const numbersArrayCopy = numbersArray.slice();
+    const swaps = selectionSort(numbersArrayCopy);
+
+    animate(swaps);
+  }
+
+  function getInsertionSort() {
+    const numbersArrayCopy = numbersArray.slice();
+    const swaps = InsertionSort(numbersArrayCopy);
+
+    animate(swaps);
+  }
+
+  function getHeapSort() {
+    const numbersArrayCopy = numbersArray.slice();
+    const swaps = heapSort(numbersArrayCopy, numbersArrayCopy.length);
+
+    animate(swaps);
+  }
+
+  function getQuickSort() {
+    const numbersArrayCopy = numbersArray.slice();
+    const swaps = quickSort(numbersArrayCopy, 0, numbersArrayCopy.length - 1);
+
+    animate(swaps);
+  }
+
+  function getMergeSort() {
+    const numbersArrayCopy = numbersArray.slice();
+    const swaps = Mergesort(numbersArrayCopy, numbersArrayCopy.length);
+
+    animateMergeSwaps(swaps);
+  }
+
   return (
     <section>
       <div className="flex flex-col lg:flex-row lg:justify-between py-4 bg-gradient-to-r from-red-500 via-red-400 to-red-300 shadow-md">
@@ -97,7 +132,7 @@ function Navbar({ numbersInfo, indicesInfo, getRandomArray }) {
             Generate new array
           </button>
           <button
-            onClick={() => getSortingAnimations(Mergesort)}
+            onClick={getMergeSort}
             className="py-[6px] px-4 outline-none mr-16 sm:mr-4 lg:mr-0 font-montserrat bg-yellow-500 text-white font-semibold rounded-full shadow-sm hover:bg-yellow-600 hover:shadow-md"
           >
             Merge sort
@@ -109,25 +144,25 @@ function Navbar({ numbersInfo, indicesInfo, getRandomArray }) {
             Bubble sort
           </button>
           <button
-            onClick={() => getSortingAnimations(InsertionSort)}
+            onClick={getInsertionSort}
             className="py-[6px] px-4 outline-none mr-14 lg:mr-0 sm:mr-4 font-montserrat bg-green-500 text-white font-semibold rounded-full shadow-sm hover:bg-green-600 hover:shadow-md"
           >
             Insertion sort
           </button>
           <button
-            onClick={() => getSortingAnimations(quickSort)}
+            onClick={getQuickSort}
             className="py-[6px] px-4 mb-2 lg:mb-0 outline-none mr-4 lg:mr-0 sm:mr-4 font-montserrat bg-violet-500 text-white font-semibold rounded-full shadow-sm hover:bg-violet-600 hover:shadow-md"
           >
             Quick sort
           </button>
           <button
-            onClick={() => getSortingAnimations(selectionSort)}
+            onClick={getSelectionSort}
             className="py-[6px] px-4 outline-none mr-14 sm:mr-4 lg:mr-0 font-montserrat bg-orange-500 text-white font-semibold rounded-full shadow-sm hover:bg-orange-600 hover:shadow-md"
           >
             Selection sort
           </button>
           <button
-            onClick={() => getSortingAnimations(heapSort)}
+            onClick={getHeapSort}
             className="py-[6px] px-4 outline-none font-montserrat bg-stone-100 text-black font-semibold rounded-full shadow-sm hover:bg-stone-200 hover:shadow-md"
           >
             Heap sort
