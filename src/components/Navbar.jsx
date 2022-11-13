@@ -46,12 +46,13 @@ function Navbar({ numbersInfo, indicesInfo, getRandomArray }) {
 
   function getSortingAnimations(algorithm) {
     const numbersArrayCopy = numbersArray.slice();
+    // swaps variable is for storing the array of elements to be swapped
     let swaps;
 
+    // Based on the name of the algorithm the value of swaps is changed
+    // Then the swaps variable is passed as an argument to the animate function
     if (algorithm.name === "Mergesort") {
       swaps = algorithm(numbersArrayCopy, numbersArrayCopy.length);
-      // console.log(swapOne);
-      // animateMergeSwaps(swapOne);
       animateMergeSwaps(swaps);
     } else {
       if (
@@ -60,16 +61,11 @@ function Navbar({ numbersInfo, indicesInfo, getRandomArray }) {
         algorithm.name === "InsertionSort"
       ) {
         swaps = algorithm(numbersArrayCopy);
-        // console.log(swapTwo);
-        // animate(swapTwo);
       } else if (algorithm.name === "heapSort") {
         swaps = algorithm(numbersArrayCopy, numbersArrayCopy.length);
-        // animate(swapThree);
       } else if (algorithm.name === "quickSort") {
         swaps = algorithm(numbersArrayCopy, 0, numbersArrayCopy.length - 1);
-        // animate(swapFour);
       }
-      // console.log(swaps);
       animate(swaps);
     }
   }
@@ -138,7 +134,7 @@ function Navbar({ numbersInfo, indicesInfo, getRandomArray }) {
             Merge sort
           </button>
           <button
-            onClick={getBubbleSort}
+            onClick={() => getSortingAnimations(BubbleSort)}
             className="py-[6px] px-4 mr-4 mb-2 lg:mb-0 lg:mr-0 outline-none font-montserrat bg-blue-600 text-white font-semibold rounded-full shadow-sm hover:bg-blue-700 hover:shadow-md"
           >
             Bubble sort
