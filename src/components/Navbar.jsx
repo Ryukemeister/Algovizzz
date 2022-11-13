@@ -44,6 +44,7 @@ function Navbar({ numbersInfo, indicesInfo, getRandomArray }) {
     }, 500);
   }
 
+  /*
   function getSortingAnimations(algorithm) {
     const numbersArrayCopy = numbersArray.slice();
     // swaps variable is for storing the array of elements to be swapped
@@ -66,6 +67,24 @@ function Navbar({ numbersInfo, indicesInfo, getRandomArray }) {
       } else if (algorithm.name === "quickSort") {
         swaps = algorithm(numbersArrayCopy, 0, numbersArrayCopy.length - 1);
       }
+      animate(swaps);
+    }
+  }
+  */
+
+  function getSortingAnimations(algorithm) {
+    const numbersArrayCopy = numbersArray.slice();
+    // swaps variable is for storing the array of elements to be swapped
+    let swaps;
+
+    // Based on the name of the algorithm the value of swaps is changed
+    // Then the swaps variable is passed as an argument to the animate function
+    if (
+      algorithm.name === "BubbleSort" ||
+      algorithm.name === "selectionSort" ||
+      algorithm.name === "InsertionSort"
+    ) {
+      swaps = algorithm(numbersArrayCopy);
       animate(swaps);
     }
   }
@@ -140,7 +159,7 @@ function Navbar({ numbersInfo, indicesInfo, getRandomArray }) {
             Bubble sort
           </button>
           <button
-            onClick={getInsertionSort}
+            onClick={() => getSortingAnimations(InsertionSort)}
             className="py-[6px] px-4 outline-none mr-14 lg:mr-0 sm:mr-4 font-montserrat bg-green-500 text-white font-semibold rounded-full shadow-sm hover:bg-green-600 hover:shadow-md"
           >
             Insertion sort
@@ -152,7 +171,7 @@ function Navbar({ numbersInfo, indicesInfo, getRandomArray }) {
             Quick sort
           </button>
           <button
-            onClick={getSelectionSort}
+            onClick={() => getSortingAnimations(selectionSort)}
             className="py-[6px] px-4 outline-none mr-14 sm:mr-4 lg:mr-0 font-montserrat bg-orange-500 text-white font-semibold rounded-full shadow-sm hover:bg-orange-600 hover:shadow-md"
           >
             Selection sort
