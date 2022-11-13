@@ -85,6 +85,7 @@ function Navbar({ numbersInfo, indicesInfo, getRandomArray }) {
       algorithm.name === "InsertionSort"
     ) {
       swaps = algorithm(numbersArrayCopy);
+      console.log(swaps);
       animate(swaps);
     }
   }
