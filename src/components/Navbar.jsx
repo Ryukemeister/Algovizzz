@@ -77,6 +77,8 @@ function Navbar({ numbersInfo, indicesInfo, getRandomArray }) {
     // swaps variable is for storing the array of elements to be swapped
     let swaps;
     console.log("Before", numbersArrayCopy);
+    console.log(algorithm, algorithm.name);
+    console.log(typeof algorithm, typeof algorithm.name);
 
     // Based on the name of the algorithm the value of swaps is changed
     // Then the swaps variable is passed as an argument to the animate function
