@@ -76,6 +76,7 @@ function Navbar({ numbersInfo, indicesInfo, getRandomArray }) {
     const numbersArrayCopy = numbersArray.slice();
     // swaps variable is for storing the array of elements to be swapped
     let swaps;
+    console.log("Before", numbersArrayCopy);
 
     // Based on the name of the algorithm the value of swaps is changed
     // Then the swaps variable is passed as an argument to the animate function
@@ -88,6 +89,8 @@ function Navbar({ numbersInfo, indicesInfo, getRandomArray }) {
       console.log(swaps);
       animate(swaps);
     }
+
+    console.log("After", numbersArrayCopy);
   }
 
   function getBubbleSort() {
