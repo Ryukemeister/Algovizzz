@@ -44,15 +44,17 @@ function Navbar({ numbersInfo, indicesInfo, getRandomArray }) {
     }, 500);
   }
 
-  /*
   function getSortingAnimations(algorithm) {
     const numbersArrayCopy = numbersArray.slice();
     // swaps variable is for storing the array of elements to be swapped
     let swaps;
-
+    console.log("1", algorithm, algorithm.name);
+    console.log("1", typeof algorithm, typeof algorithm.name);
     // Based on the name of the algorithm the value of swaps is changed
     // Then the swaps variable is passed as an argument to the animate function
     if (algorithm.name === "Mergesort") {
+      console.log("2", algorithm, algorithm.name);
+      console.log("2", typeof algorithm, typeof algorithm.name);
       swaps = algorithm(numbersArrayCopy, numbersArrayCopy.length);
       animateMergeSwaps(swaps);
     } else {
@@ -62,16 +64,23 @@ function Navbar({ numbersInfo, indicesInfo, getRandomArray }) {
         algorithm.name === "InsertionSort"
       ) {
         swaps = algorithm(numbersArrayCopy);
+        console.log("3", algorithm, algorithm.name);
+        console.log("3", typeof algorithm, typeof algorithm.name);
       } else if (algorithm.name === "heapSort") {
+        console.log("3", algorithm, algorithm.name);
+        console.log("3", typeof algorithm, typeof algorithm.name);
         swaps = algorithm(numbersArrayCopy, numbersArrayCopy.length);
       } else if (algorithm.name === "quickSort") {
+        console.log("3", algorithm, algorithm.name);
+        console.log("3", typeof algorithm, typeof algorithm.name);
         swaps = algorithm(numbersArrayCopy, 0, numbersArrayCopy.length - 1);
       }
+
       animate(swaps);
     }
   }
-  */
 
+  /*
   function getSortingAnimations(algorithm) {
     const numbersArrayCopy = numbersArray.slice();
     // swaps variable is for storing the array of elements to be swapped
@@ -94,6 +103,7 @@ function Navbar({ numbersInfo, indicesInfo, getRandomArray }) {
 
     console.log("After", numbersArrayCopy);
   }
+  */
 
   function getBubbleSort() {
     const numbersArrayCopy = numbersArray.slice();
