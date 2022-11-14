@@ -44,35 +44,36 @@ function Navbar({ numbersInfo, indicesInfo, getRandomArray }) {
     }, 500);
   }
 
-  function getSortingAnimations(algorithm) {
+  function getSortingAnimations(algorithm, algorithmName) {
     const numbersArrayCopy = numbersArray.slice();
     // swaps variable is for storing the array of elements to be swapped
     let swaps;
-    console.log("1", algorithm, algorithm.name);
-    console.log("1", typeof algorithm, typeof algorithm.name);
+    // console.log("1", algorithm, algorithm.name);
+    // console.log("1", typeof algorithm, typeof algorithm.name);
+
     // Based on the name of the algorithm the value of swaps is changed
     // Then the swaps variable is passed as an argument to the animate function
-    if (algorithm.name === "Mergesort") {
+    if (algorithmName === "MergeSort") {
       console.log("2", algorithm, algorithm.name);
       console.log("2", typeof algorithm, typeof algorithm.name);
       swaps = algorithm(numbersArrayCopy, numbersArrayCopy.length);
       animateMergeSwaps(swaps);
     } else {
       if (
-        algorithm.name === "BubbleSort" ||
-        algorithm.name === "selectionSort" ||
-        algorithm.name === "InsertionSort"
+        algorithmName === "BubbleSort" ||
+        algorithmName === "SelectionSort" ||
+        algorithmName === "InsertionSort"
       ) {
         swaps = algorithm(numbersArrayCopy);
-        console.log("3", algorithm, algorithm.name);
-        console.log("3", typeof algorithm, typeof algorithm.name);
-      } else if (algorithm.name === "heapSort") {
-        console.log("3", algorithm, algorithm.name);
-        console.log("3", typeof algorithm, typeof algorithm.name);
+        // console.log("3", algorithm, algorithm.name);
+        // console.log("3", typeof algorithm, typeof algorithm.name);
+      } else if (algorithmName === "HeapSort") {
+        // console.log("3", algorithm, algorithm.name);
+        // console.log("3", typeof algorithm, typeof algorithm.name);
         swaps = algorithm(numbersArrayCopy, numbersArrayCopy.length);
-      } else if (algorithm.name === "quickSort") {
-        console.log("3", algorithm, algorithm.name);
-        console.log("3", typeof algorithm, typeof algorithm.name);
+      } else if (algorithmName === "QuickSort") {
+        // console.log("3", algorithm, algorithm.name);
+        // console.log("3", typeof algorithm, typeof algorithm.name);
         swaps = algorithm(numbersArrayCopy, 0, numbersArrayCopy.length - 1);
       }
 
@@ -169,13 +170,13 @@ function Navbar({ numbersInfo, indicesInfo, getRandomArray }) {
             Merge sort
           </button>
           <button
-            onClick={() => getSortingAnimations(BubbleSort)}
+            onClick={() => getSortingAnimations(BubbleSort, "BubbleSort")}
             className="py-[6px] px-4 mr-4 mb-2 lg:mb-0 lg:mr-0 outline-none font-montserrat bg-blue-600 text-white font-semibold rounded-full shadow-sm hover:bg-blue-700 hover:shadow-md"
           >
             Bubble sort
           </button>
           <button
-            onClick={() => getSortingAnimations(InsertionSort)}
+            onClick={() => getSortingAnimations(InsertionSort, "InsertionSort")}
             className="py-[6px] px-4 outline-none mr-14 lg:mr-0 sm:mr-4 font-montserrat bg-green-500 text-white font-semibold rounded-full shadow-sm hover:bg-green-600 hover:shadow-md"
           >
             Insertion sort
@@ -187,7 +188,7 @@ function Navbar({ numbersInfo, indicesInfo, getRandomArray }) {
             Quick sort
           </button>
           <button
-            onClick={() => getSortingAnimations(selectionSort)}
+            onClick={() => getSortingAnimations(selectionSort, "SelectionSort")}
             className="py-[6px] px-4 outline-none mr-14 sm:mr-4 lg:mr-0 font-montserrat bg-orange-500 text-white font-semibold rounded-full shadow-sm hover:bg-orange-600 hover:shadow-md"
           >
             Selection sort
