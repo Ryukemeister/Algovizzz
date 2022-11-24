@@ -24,7 +24,7 @@ function App() {
   }
 
   useEffect(() => {
-    return () => getRandomArray();
+    getRandomArray();
   }, []);
 
   return (
